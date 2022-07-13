@@ -12,7 +12,5 @@ public interface CustomerService {
 	public List<CustomerBean> getAllCustomers(int noOfRecPerPage);
 	public void deleteCustomerById(int id);
 	public List<CustomerBean> deleteCustomer(CustomerBean customerBean);
-	public CustomerBean getCustomerById(int id);
-//	public CustomerBean getCustomerById(int id);
-	
+	public CustomerBean getCustomerById(int id);	
 }
