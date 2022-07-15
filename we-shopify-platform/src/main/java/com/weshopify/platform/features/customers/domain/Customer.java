@@ -12,7 +12,7 @@ import lombok.Data;
 
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customer_project")
 @Data
 public class Customer implements Serializable {
 

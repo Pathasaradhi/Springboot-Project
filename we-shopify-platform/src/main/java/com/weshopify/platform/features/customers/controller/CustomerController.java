@@ -1,5 +1,6 @@
 package com.weshopify.platform.features.customers.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +31,24 @@ public class CustomerController {
 		return "customer-dashboard";
 	}
 	
-	@RequestMapping("/view-customerBoard/{noOfRecPerPage}")
-	public String viewCustomerDashBoardWithPagination(@PathVariable("noOfRecPerPage") String noOfRecPerPage,Model model) {
+	@RequestMapping("/view-customerBoard/{currentPage}/{noOfRecPerPage}")
+	public String viewCustomerDashBoardWithPagination(@PathVariable("currentpage") String currentpage,@PathVariable("noOfRecPerPage") String noOfRecPerPage,Model model) {
 		log.info("i am inn viewCustomerDashBoard page");
 		log.info("curent page is:\t"+0);
 		log.info("no.Of Rec Per Page is:\t"+noOfRecPerPage);
-		List<CustomerBean> customerList = customerService.getAllCustomers(Integer.valueOf(noOfRecPerPage));
+		List<Integer> pageList = new ArrayList<>();
+		List<CustomerBean> customerList = customerService.getAllCustomers(Integer.valueOf(currentpage),Integer.valueOf(noOfRecPerPage));
 		model.addAttribute("currentPage", 0);
 		model.addAttribute("noOfRecPerPage", noOfRecPerPage);
 		
-		int totalRecords = customerList.size();
+		int totalRecords = customerService.getAllCustomers().size();
+		System.out.println("total records :"+totalRecords);
 		int noOfPages = totalRecords/Integer.valueOf(noOfRecPerPage);
-		model.addAttribute("totalNoOfRecords", noOfPages);
+		System.out.println("number of pages after calculation : "+noOfPages);
+		for(int i=1;i<=noOfPages;i++) {
+			pageList.add(i);
+		}
+		model.addAttribute("totalNoOfRecords", pageList);
 		model.addAttribute("customerData", customerList);
 		return "customer-dashboard";
 	}
