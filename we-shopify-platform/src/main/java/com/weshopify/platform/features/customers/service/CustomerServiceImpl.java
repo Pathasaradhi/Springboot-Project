@@ -75,9 +75,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerBean> getAllCustomers(int noOfRecPerPage) {
-		int curret_page = 0;
-		PageRequest pageReq = PageRequest.of(curret_page, noOfRecPerPage);
+	public List<CustomerBean> getAllCustomers(int currentpage,int noOfRecPerPage) {
+		PageRequest pageReq = PageRequest.of(currentpage, noOfRecPerPage);
 		Iterator<Customer> customerIt = customerRepo.findAll(pageReq).iterator();
 		List<CustomerBean> custBeanList = new ArrayList<>();
 		while(customerIt.hasNext()) {

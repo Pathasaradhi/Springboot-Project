@@ -10,8 +10,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication
 public class WeShopifyPlatformApplication implements CommandLineRunner{
 
-	@Autowired
-	private HikariDataSource hds;
+//	@Autowired
+//	private HikariDataSource hds;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(WeShopifyPlatformApplication.class, args);
@@ -19,12 +19,13 @@ public class WeShopifyPlatformApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("command line runner ru methos is executing....");
-		System.out.println(hds.getDriverClassName());
-		System.out.println(hds.getUsername());
-		System.out.println(hds.getJdbcUrl());
-		System.out.println(hds.getPassword());
-		System.out.println(hds.getSchema());
+		System.out.println("command line runner ru methos is executing from springboot main method");
+		//commented this are not required to know...just checking printing values or not at the time running
+//		System.out.println(hds.getDriverClassName());
+//		System.out.println(hds.getUsername());
+//		System.out.println(hds.getJdbcUrl());
+//		System.out.println(hds.getPassword());
+//		System.out.println(hds.getSchema());
 	}
 	
 }
